@@ -10,7 +10,9 @@ import scrapy
 
 class MangacrawlerItem(scrapy.Item):
     # define the fields for your item here like:
-    chapter = scrapy.Field()
+    book_name = scrapy.Field()
+    part_id = scrapy.Field()
+    chapter_id = scrapy.Field()
     image_urls = scrapy.Field()
     images = scrapy.Field()
     pass

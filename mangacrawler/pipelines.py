@@ -12,21 +12,6 @@ import re
 
 class GocThuGianImagesPipeline(ImagesPipeline):
 
-
-  #Name download version
-  # def image_key(self, url):
-  #   org_filename=url.split('/')[-1]
-    
-    
-    # #Bay vien ngoc rong
-    # # params = re.findall("(.*)_(\d*)_.*_(\d*).jpg",org_filename) #remember, regex in python return a list of a tuple!!!! This is so stupid   
-    
-    # #Dau an rong thieng
-    # params = re.findall("(.*)__(\d*)_(\d*).jpg",org_filename) #remember, regex in python return a list of a tuple!!!! This is so stupid
-    
-    # new_filename = '{0}-{1}-{2}.jpg'.format(*params[0])
-    # return '%s' % (new_filename)
-
   CONVERTED_ORIGINAL = re.compile('^full/[0-9,a-f]+.jpg$')
 
   # name information coming from the spider, in each item
@@ -34,7 +19,7 @@ class GocThuGianImagesPipeline(ImagesPipeline):
   # through "meta" dict
   def get_media_requests(self, item, info):
     print "get_media_requests"
-    return [Request(x, meta={'chapter': item["chapter"]})
+    return [Request(x, meta={'chapter_id': item["chapter_id"], 'part_id': item["part_id"], 'book_name': item["book_name"]})
       for x in item.get('image_urls', [])]
 
   # this is where the image is extracted from the HTTP response
@@ -47,7 +32,7 @@ class GocThuGianImagesPipeline(ImagesPipeline):
 
   def change_filename(self, key, response):
     org_filename = response.url.split('/')[-1]
-    new_filename = '{0}-{1}'.format(response.meta['chapter'], org_filename)
+    new_filename = '{0}-Tap{1}-Chapter{2}-Image{3}'.format(response.meta['book_name'], response.meta['part_id'], response.meta['chapter_id'], org_filename)
     return '%s' % (new_filename)
     # return "full/%s.jpg" % response.meta['chapter'][0]
 
