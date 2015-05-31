@@ -1,4 +1,4 @@
-.DS_Store
-.jpg
-.pdf
-.pyc
+*.DS_Store
+*.jpg
+*.pdf
+*.pyc
