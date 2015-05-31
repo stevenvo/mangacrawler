@@ -49,6 +49,7 @@ class GocthugianSpider(scrapy.Spider):
          item['part_id'] = 1
       else:
          item['part_id'] = part_id_arr[0]
-      item['chapter_id'] = re.findall("Chapter (\d*)", page_title)[0]
+      item['chapter_id'] = re.findall("Chapter (\d*)", page_title)[0]            
       item['image_urls'] = response.xpath('//div[@class="TTCD"]/img/@src').extract()
+      # item['image_counter'] = 0
       return item
