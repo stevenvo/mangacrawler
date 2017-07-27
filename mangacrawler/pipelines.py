@@ -19,11 +19,11 @@ class GocThuGianImagesPipeline(ImagesPipeline):
    # through "meta" dict
    def get_media_requests(self, item, info):
       print "get_media_requests"
-      
-      
+
+
       # return [Request(x, meta={'chapter_id': item["chapter_id"], 'part_id': item["part_id"], 'book_name': item["book_name"]})
       #       for x in item.get('image_urls', [])]
-      
+
       for key, image_url in enumerate(item['image_urls']):
          yield Request(image_url, meta={'chapter_id': item["chapter_id"], 'part_id': item["part_id"], 'book_name': item["book_name"], 'image_key': key})
 
@@ -38,10 +38,10 @@ class GocThuGianImagesPipeline(ImagesPipeline):
 
 
    def change_filename(self, key, response):
-      
+
       # Comment this code as sometimes website uses the same filename (different path)
       # for all images in the chapter
-      # org_filename = response.url.split('/')[-1]      
+      # org_filename = response.url.split('/')[-1]
       # if re.findall('(\d*).jpg', org_filename)[0] != '':
       #    image_id = int(re.findall('(\d*).jpg', org_filename)[0])
       # else:
@@ -49,7 +49,7 @@ class GocThuGianImagesPipeline(ImagesPipeline):
 
       # Use image key (generated in get_media_request by image crawling sequence) instead
       image_id = response.meta['image_key']
-      new_filename = '{0}-Tap{1}-Chapter{2}-Image{3:06}.jpg'.format(response.meta['book_name'], response.meta['part_id'], response.meta['chapter_id'], image_id)
+      new_filename = '{0}-Tap{1}-Chapter{2:03}-Image{3:06}.jpg'.format(response.meta['book_name'], response.meta['part_id'], int(response.meta['chapter_id']), image_id)
       return '%s' % (new_filename)
 
 
