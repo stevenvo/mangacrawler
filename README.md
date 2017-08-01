@@ -3,6 +3,7 @@
 ## Supported Vietnamese manga websites
 
 http://gocthugian.com.vn/truyen/
+
 http://thichtruyentranh.com/
 
 
