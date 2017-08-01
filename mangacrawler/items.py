@@ -15,5 +15,7 @@ class MangacrawlerItem(scrapy.Item):
     chapter_id = scrapy.Field()
     image_urls = scrapy.Field()
     images = scrapy.Field()
+    chapter_name = scrapy.Field()
+    # source = scrapy.Field()
     # image_counter = scrapy.Field()
     pass
