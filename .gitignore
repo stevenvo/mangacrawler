@@ -2,4 +2,4 @@
 *.jpg
 *.pdf
 *.pyc
-*.log
+scrapy.log
