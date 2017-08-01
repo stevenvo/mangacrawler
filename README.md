@@ -1,5 +1,11 @@
 # Manga Crawler
 
+## Supported Vietnamese manga websites
+
+http://gocthugian.com.vn/truyen/
+http://thichtruyentranh.com/
+
+
 ## Usage
 
     pip install scrapy
